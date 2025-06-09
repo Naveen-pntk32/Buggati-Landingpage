@@ -25,7 +25,7 @@ export default function ModelPage() {
       wordmark: "/png/chiron-wordmark.png",
       fullName: "BUGATTI CHIRON SPORT",
       images: [
-        "/videos/chiron-video.webm", // First section video remains
+        "https://res.cloudinary.com/dhxlh70zi/video/upload/v1749488345/chiron-video_r0hccx.mp4", // First section video from Cloudinary
         "/img/chiron/chiron-bg1.jpg",
         "/img/chiron/chiron-bg2.jpg"
       ],
@@ -56,7 +56,7 @@ export default function ModelPage() {
       wordmark: "/png/mistral-wordmark.png",
       fullName: "BUGATTI W16 MISTRAL",
       images: [
-        "/videos/chiron-video.webm",
+        "https://res.cloudinary.com/dhxlh70zi/video/upload/v1749488345/chiron-video_r0hccx.mp4",
         "/img/mistral/mistral-bg1.jpg",
         "/img/mistral/mistral-bg2.jpg"
       ],
@@ -87,7 +87,7 @@ export default function ModelPage() {
       wordmark: "/png/divo-wordmark.png",
       fullName: "BUGATTI DIVO",
       images: [
-        "/videos/chiron-video.webm",
+        "https://res.cloudinary.com/dhxlh70zi/video/upload/v1749488345/chiron-video_r0hccx.mp4",
         "/img/divo/divo-bg1.jpg",
         "/img/divo/divo-bg2.jpg"
       ],
@@ -118,7 +118,7 @@ export default function ModelPage() {
       wordmark: "/png/tourbillon-wordmark.png",
       fullName: "BUGATTI TOURBILLON",
       images: [
-        "/videos/chiron-video.webm",
+        "https://res.cloudinary.com/dhxlh70zi/video/upload/v1749488345/chiron-video_r0hccx.mp4",
         "/img/tourbillion/Tourbillon-bg1.jpg",
         "/img/tourbillion/Tourbillon-bg2.jpg"
       ],
@@ -149,7 +149,7 @@ export default function ModelPage() {
       wordmark: "/png/centodieci-wordmark.png",
       fullName: "BUGATTI CENTODIECI",
       images: [
-        "/videos/chiron-video.webm",
+        "https://res.cloudinary.com/dhxlh70zi/video/upload/v1749488345/chiron-video_r0hccx.mp4",
         "/img/centodecie/Centodieci-bg1.jpg",
         "/img/centodecie/Centodieci-bg2.jpg"
       ],
@@ -180,7 +180,7 @@ export default function ModelPage() {
       wordmark: "/png/bolide-wordmark.png",
       fullName: "BUGATTI BOLIDE",
       images: [
-        "/videos/chiron-video.webm",
+        "https://res.cloudinary.com/dhxlh70zi/video/upload/v1749488345/chiron-video_r0hccx.mp4",
         "/img/bolide/bolide-bg1.jpg",
         "/img/bolide/bolide-bg2.jpg"
       ],
