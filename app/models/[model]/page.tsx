@@ -291,7 +291,7 @@ export default function ModelPage() {
                   playsInline
                   autoPlay
                 >
-                  <source src="/videos/bugatti-demo.webm" type="video/webm" />
+                  <source src="/videos/chiron-video.webm" type="video/webm" />
                 </video>
                 <div className="absolute inset-0 bg-black/20" />
               </div>
