@@ -19,12 +19,12 @@ export default function HomePage() {
   }
 
   const models = [
-    { name: "Chiron", image: "/img/bugatti-chiron.jpg", description: "The Ultimate Hypercar" },
-    { name: "Mistral", image: "/img/bugatti-mistral.jpg", description: "Open-Top Excellence" },
-    { name: "Divo", image: "/img/bugatti-divo.jpg", description: "Agile & Lightweight" },
-    { name: "Tourbillon", image: "/img/bugatti-tourbillon.jpg", description: "Engineering Masterpiece" },
-    { name: "Centodieci", image: "/images/bugatti-chiron.jpg", description: "Limited Edition" },
-    { name: "Bolide", image: "/images/bugatti-mistral.jpg", description: "Track-Focused Beast" },
+    { name: "Chiron", image: "/img/chiron/chiron-frontview.jpg", description: "The Ultimate Hypercar" },
+    { name: "Mistral", image: "/img/mistral/mistral-frontview.jpg", description: "Open-Top Excellence" },
+    { name: "Divo", image: "/img/divo/divo-frontview.jpg", description: "Agile & Lightweight" },
+    { name: "Tourbillon", image: "/img/tourbillion/Tourbillon-frontview.jpg", description: "Engineering Masterpiece" },
+    { name: "Centodieci", image: "/img/centodecie/Centodieci-frontview.jpg", description: "Limited Edition" },
+    { name: "Bolide", image: "/img/bolide/bolide-frontview.jpg", description: "Track-Focused Beast" },
   ]
 
   return (
@@ -94,14 +94,7 @@ export default function HomePage() {
         </main>
 
         {/* Bottom Navigation Dots */}
-        <div className="absolute bottom-8 right-8 z-10">
-          <div className="flex flex-col space-y-2">
-            <div className="w-2 h-2 bg-white rounded-full"></div>
-            <div className="w-2 h-2 bg-white/40 rounded-full"></div>
-            <div className="w-2 h-2 bg-white/40 rounded-full"></div>
-            <div className="w-2 h-2 bg-white/40 rounded-full"></div>
-          </div>
-        </div>
+        
       </section>
 
       {/* Models Section */}

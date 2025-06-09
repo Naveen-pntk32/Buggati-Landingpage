@@ -1,9 +1,13 @@
 "use client"
 
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, ArrowLeft, Plus } from "lucide-react"
 import { useEffect, useState, useRef } from "react"
 import { useParams } from "next/navigation"
+import FadeContent from "@/app/blocks/Animations/FadeContent/FadeContent"
+import AnimatedContent from "@/app/blocks/Animations/AnimatedContent/AnimatedContent"
+import { BlurFade } from "@/app/components/magicui/blur-fade"
 
 export default function ModelPage() {
   const params = useParams()
@@ -20,25 +24,30 @@ export default function ModelPage() {
       name: "CHIRON",
       wordmark: "/png/chiron-wordmark.png",
       fullName: "BUGATTI CHIRON SPORT",
-      images: ["/img/bugatti-chiron.jpg", "/img/bugatti-hero.jpg", "/img/bugatti-tourbillon.jpg"],
+      images: [
+        "/videos/chiron-video.webm", // First section video remains
+        "/img/chiron/chiron-bg1.jpg",
+        "/img/chiron/chiron-bg2.jpg"
+      ],
       specs: {
         maxSpeed: "420 km/h",
-        acceleration: "2.4 s",
+        acceleration: "2.4s",
         horsepower: "1479 HP",
         torque: "1600 Nm",
+        engineType: "W16"
       },
       features: [
         {
           title: "One-Piece Taillight",
           description:
             "Created as one single unbroken piece, the striking taillight is the embodiment of 'Form Follows Performance', allowing light to be emitted and form beneath it, a seamless blending of style and innovation.",
-          images: ["/img/bugatti-chiron.jpg", "/img/bugatti-hero.jpg"],
+          images: ["/img/chiron/chiron-2ndsec.jpg", "/img/chiron/chiron-frontview.jpg"],
         },
         {
           title: "Beauty Underneath",
           description:
             "Nothing is too beautiful. The pursuit of beauty begins beneath the design of Tourbillon's chassis — a stunning work of art, hidden from view, that's not only exquisitely formed but enormously strong.",
-          images: ["/img/bugatti-tourbillon.jpg", "/img/bugatti-divo.jpg"],
+          images: ["/img/chiron/chiron-3rdsec.jpg", "/img/chiron/chiron-frontview.jpg"],
         },
       ],
     },
@@ -46,25 +55,30 @@ export default function ModelPage() {
       name: "MISTRAL",
       wordmark: "/png/mistral-wordmark.png",
       fullName: "BUGATTI W16 MISTRAL",
-      images: ["/img/bugatti-mistral.jpg", "/img/bugatti-chiron.jpg", "/img/bugatti-divo.jpg"],
+      images: [
+        "/videos/chiron-video.webm",
+        "/img/mistral/mistral-bg1.jpg",
+        "/img/mistral/mistral-bg2.jpg"
+      ],
       specs: {
         maxSpeed: "420 km/h",
-        acceleration: "2.4 s",
+        acceleration: "2.4s",
         horsepower: "1577 HP",
         torque: "1600 Nm",
+        engineType: "W16"
       },
       features: [
         {
           title: "Iconic Silhouette",
           description:
             "The W16 Mistral redefines open-top motoring with its distinctive silhouette and uncompromising performance, a fitting tribute to Bugatti's legendary W16 engine.",
-          images: ["/img/bugatti-mistral.jpg", "/img/bugatti-chiron.jpg"],
+          images: ["/img/mistral/mistral-2ndsec.jpg", "/img/mistral/mistral-frontview.jpg"],
         },
         {
           title: "Engineering Excellence",
           description:
             "Every detail of the W16 Mistral has been meticulously crafted to deliver the ultimate driving experience, combining breathtaking speed with unparalleled luxury.",
-          images: ["/img/bugatti-divo.jpg", "/img/bugatti-hero.jpg"],
+          images: ["/img/mistral/mistral-3rd.jpg", "/img/mistral/mistral-frontview.jpg"],
         },
       ],
     },
@@ -72,25 +86,30 @@ export default function ModelPage() {
       name: "DIVO",
       wordmark: "/png/divo-wordmark.png",
       fullName: "BUGATTI DIVO",
-      images: ["/img/bugatti-divo.jpg", "/img/bugatti-tourbillon.jpg", "/img/bugatti-mistral.jpg"],
+      images: [
+        "/videos/chiron-video.webm",
+        "/img/divo/divo-bg1.jpg",
+        "/img/divo/divo-bg2.jpg"
+      ],
       specs: {
         maxSpeed: "380 km/h",
-        acceleration: "2.4 s",
+        acceleration: "2.4s",
         horsepower: "1479 HP",
         torque: "1600 Nm",
+        engineType: "W16"
       },
       features: [
         {
           title: "Agile Masterpiece",
           description:
             "The Divo represents a new chapter in Bugatti's history, focusing on extreme agility and corner dynamics while maintaining the brand's signature luxury and exclusivity.",
-          images: ["/img/bugatti-divo.jpg", "/img/bugatti-tourbillon.jpg"],
+          images: ["/img/divo/divo-2ndsec.jpg", "/img/divo/divo-frontview.jpg"],
         },
         {
           title: "Aerodynamic Perfection",
           description:
             "Every curve and surface of the Divo has been engineered to optimize airflow and downforce, resulting in a 90kg increase in downforce compared to the Chiron.",
-          images: ["/img/bugatti-mistral.jpg", "/img/bugatti-hero.jpg"],
+          images: ["/img/divo/divo-3rdsec.jpg", "/img/divo/divo-frontview.jpg"],
         },
       ],
     },
@@ -98,77 +117,92 @@ export default function ModelPage() {
       name: "TOURBILLON",
       wordmark: "/png/tourbillon-wordmark.png",
       fullName: "BUGATTI TOURBILLON",
-      images: ["/img/bugatti-tourbillon.jpg", "/img/bugatti-divo.jpg", "/img/bugatti-chiron.jpg"],
+      images: [
+        "/videos/chiron-video.webm",
+        "/img/tourbillion/Tourbillon-bg1.jpg",
+        "/img/tourbillion/Tourbillon-bg2.jpg"
+      ],
       specs: {
         maxSpeed: "445 km/h",
-        acceleration: "2.0 s",
+        acceleration: "2.0s",
         horsepower: "1775 HP",
         torque: "1800 Nm",
+        engineType: "W16"
       },
       features: [
         {
           title: "Revolutionary Design",
           description:
             "The Tourbillon represents Bugatti's vision for the future, combining cutting-edge technology with timeless elegance in a package that pushes the boundaries of automotive design.",
-          images: ["/img/bugatti-tourbillon.jpg", "/img/bugatti-divo.jpg"],
+          images: ["/img/tourbillion/Tourbillon-2ndsec.jpg", "/img/tourbillion/Tourbillon-frontview.jpg"],
         },
         {
           title: "Unmatched Performance",
           description:
             "With its groundbreaking powertrain and advanced aerodynamics, the Tourbillon delivers performance figures that redefine what's possible in a production hypercar.",
-          images: ["/img/bugatti-chiron.jpg", "/img/bugatti-hero.jpg"],
+          images: ["/img/tourbillion/Tourbillon-3rdsec.jpg", "/img/tourbillion/Tourbillon-frontview.jpg"],
         },
       ],
     },
     centodieci: {
       name: "CENTODIECI",
-      wordmark: "/images/centodieci-wordmark.png",
+      wordmark: "/png/centodieci-wordmark.png",
       fullName: "BUGATTI CENTODIECI",
-      images: ["/images/bugatti-chiron.jpg", "/images/bugatti-hero.jpg", "/images/bugatti-tourbillon.jpg"],
+      images: [
+        "/videos/chiron-video.webm",
+        "/img/centodecie/Centodieci-bg1.jpg",
+        "/img/centodecie/Centodieci-bg2.jpg"
+      ],
       specs: {
         maxSpeed: "380 km/h",
-        acceleration: "2.4 s",
+        acceleration: "2.4s",
         horsepower: "1577 HP",
         torque: "1600 Nm",
+        engineType: "W16"
       },
       features: [
         {
           title: "Limited Edition Excellence",
           description:
             "The Centodieci represents the pinnacle of Bugatti's craftsmanship, with only 10 units ever produced, making it one of the most exclusive hypercars in the world.",
-          images: ["/images/bugatti-chiron.jpg", "/images/bugatti-hero.jpg"],
+          images: ["/img/centodecie/Centodieci-2ndsec.jpg", "/img/centodecie/Centodieci-frontview.jpg"],
         },
         {
           title: "Heritage Reimagined",
           description:
             "Paying homage to the legendary EB110, the Centodieci combines modern engineering with classic design elements, creating a truly unique automotive masterpiece.",
-          images: ["/images/bugatti-tourbillon.jpg", "/images/bugatti-divo.jpg"],
+          images: ["/img/centodecie/Centodieci-3rdsec.jpg", "/img/centodecie/Centodieci-frontview.jpg"],
         },
       ],
     },
     bolide: {
       name: "BOLIDE",
-      wordmark: "/images/bolide-wordmark.png",
+      wordmark: "/png/bolide-wordmark.png",
       fullName: "BUGATTI BOLIDE",
-      images: ["/images/bugatti-divo.jpg", "/images/bugatti-mistral.jpg", "/images/bugatti-chiron.jpg"],
+      images: [
+        "/videos/chiron-video.webm",
+        "/img/bolide/bolide-bg1.jpg",
+        "/img/bolide/bolide-bg2.jpg"
+      ],
       specs: {
         maxSpeed: "500 km/h",
-        acceleration: "2.17 s",
+        acceleration: "2.17s",
         horsepower: "1825 HP",
         torque: "1850 Nm",
+        engineType: "W16"
       },
       features: [
         {
           title: "Track-Focused Beast",
           description:
             "The Bolide is Bugatti's most extreme creation, designed purely for track performance with uncompromising aerodynamics and lightweight construction.",
-          images: ["/images/bugatti-divo.jpg", "/images/bugatti-mistral.jpg"],
+          images: ["/img/bolide/bolide-2ndsec.jpg", "/img/bolide/bolide-frontview.jpg"],
         },
         {
           title: "Ultimate Performance",
           description:
             "With its radical design and extreme power-to-weight ratio, the Bolide represents the absolute pinnacle of what's possible in automotive engineering.",
-          images: ["/images/bugatti-chiron.jpg", "/images/bugatti-hero.jpg"],
+          images: ["/img/bolide/bolide-3rdsec.jpg", "/img/bolide/bolide-frontview.jpg"],
         },
       ],
     },
@@ -284,19 +318,25 @@ export default function ModelPage() {
             {index === 0 ? (
               // Video Background for first section
               <div className="absolute inset-0">
-                <video
-                  className="w-full h-full object-cover"
-                  muted
-                  loop
-                  playsInline
-                  autoPlay
-                >
-                  <source src="/videos/chiron-video.webm" type="video/webm" />
-                </video>
-                <div className="absolute inset-0 bg-black/20" />
-              </div>
+  <FadeContent duration={1500} threshold={0.1}>
+    <video
+      className="w-full h-full object-cover scale-[1.4] origin-center"
+      muted
+      loop
+      playsInline
+      autoPlay
+    >
+      <source
+        src="https://res.cloudinary.com/dhxlh70zi/video/upload/v1749488345/chiron-video_r0hccx.mp4"
+        type="video/mp4"
+      />
+    </video>
+    <div className="absolute inset-0 bg-black/20" />
+  </FadeContent>
+</div>
+
             ) : (
-              // Image Background for other sections
+              // Image Background for other sections with content
               <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{
@@ -306,7 +346,109 @@ export default function ModelPage() {
                   backgroundAttachment: "fixed",
                 }}
               >
-                <div className="absolute inset-0 bg-black/20" />
+                <div className="absolute inset-0 bg-black/60" />
+                {index === 1 && (
+                  // Second section content - Image Left, Content Right
+                  <div className="absolute inset-0 flex items-center px-6 lg:px-12">
+                    <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center gap-12">
+                      {/* Left Image Container */}
+                      <div className="w-full lg:w-1/2">
+                        <AnimatedContent
+                          direction="horizontal"
+                          distance={100}
+                          duration={1}
+                          ease="power3.out"
+                          delay={0.5}
+                        >
+                          
+                          
+                            <Image
+                              src={currentModel.features[0].images[0]}
+                              alt={currentModel.features[0].title}
+                              width={600}
+                              height={400}
+                              className="w-full h-[300px] md:h-[400px] object-cover"
+                              style={{
+                                filter: "drop-shadow(0 0 20px rgba(0,0,0,0.5))",
+                              }}
+                            />
+                          
+                        </AnimatedContent>
+                      </div>
+                      
+                      {/* Right Content Container */}
+                      <div className="w-full lg:w-1/2">
+                        <AnimatedContent
+                          direction="horizontal"
+                          distance={100}
+                          duration={1}
+                          ease="power3.out"
+                          delay={0.5}
+                        >
+                          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                            {currentModel.features[0].title}
+                          </h2>
+                          <p className="text-gray-200 text-lg leading-relaxed">
+                            {currentModel.features[0].description}
+                          </p>
+                        </AnimatedContent>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {index === 2 && (
+                  // Third section content - Content Left, Image Right
+                  <div className="absolute inset-0 flex items-center px-6 lg:px-12">
+                    <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row-reverse items-center gap-12">
+                      {/* Right Image Container */}
+                      <div className="w-full lg:w-1/2">
+                        <AnimatedContent
+                          direction="horizontal"
+                          distance={100}
+                          duration={1}
+                          ease="power3.out"
+                          delay={0.2}
+                        >
+                          <BlurFade
+                            direction="right"
+                            duration={0.8}
+                            delay={0.3}
+                            blur="8px"
+                          >
+                            <Image
+                              src={currentModel.features[1].images[0]}
+                              alt={currentModel.features[1].title}
+                              width={600}
+                              height={400}
+                              className="w-full h-[300px] md:h-[400px] object-cover"
+                              style={{
+                                filter: "drop-shadow(0 0 20px rgba(0,0,0,0.5))",
+                              }}
+                            />
+                          </BlurFade>
+                        </AnimatedContent>
+                      </div>
+                      
+                      {/* Left Content Container */}
+                      <div className="w-full lg:w-1/2">
+                        <AnimatedContent
+                          direction="horizontal"
+                          distance={100}
+                          duration={1}
+                          ease="power3.out"
+                          delay={0.4}
+                        >
+                          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                            {currentModel.features[1].title}
+                          </h2>
+                          <p className="text-gray-200 text-lg leading-relaxed">
+                            {currentModel.features[1].description}
+                          </p>
+                        </AnimatedContent>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </section>
@@ -321,19 +463,36 @@ export default function ModelPage() {
       >
         <div className="max-w-7xl mx-auto">
           {/* Side View Image Container */}
-          <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] mb-16 overflow-hidden">
+          <div className="relative w-full h-[250px] md:h-[350px] lg:h-[450px] mb-16">
             <div 
-              className={`absolute inset-0 flex items-center justify-center transform transition-all duration-1000 ease-out
-                ${isImageVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
+              className={`h-full flex items-center justify-center transform transition-all duration-1000 ease-out
+                  ${isImageVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
             >
-              <img
-                src="/sideview-img/sideview-bolide.png"
-                alt={`${currentModel.name} Side View`}
-                className="w-full h-full object-contain"
-                style={{
-                  filter: "drop-shadow(0 0 20px rgba(0,0,0,0.5))",
-                }}
-              />
+              <AnimatedContent
+                direction="vertical"
+                distance={100}
+                duration={1}
+                ease="power3.out"
+                delay={0.2}
+              >
+                <BlurFade
+                  direction="up"
+                  duration={0.8}
+                  delay={0.3}
+                  blur="8px"
+                >
+                  <Image
+                    src="/sideview-img/sideview-bolide.png"
+                    alt={`${currentModel.name} Side View`}
+                    width={400}
+                    height={200}
+                    className="w-full h-full object-contain transform scale-105"
+                    style={{
+                      filter: "drop-shadow(0 0 20px rgba(0,0,0,0.5))",
+                    }}
+                  />
+                </BlurFade>
+              </AnimatedContent>
             </div>
           </div>
 
@@ -342,7 +501,7 @@ export default function ModelPage() {
             ${isImageVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
           >
             <div className="border-r border-gray-800 pr-8">
-              <p className="text-sm text-gray-400 mb-2 uppercase tracking-wide">Max Speed</p>
+              <p className="text-sm text-gray-400 mb-2 uppercase tracking-wide">Top Speed</p>
               <p
                 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
                 style={{ fontFamily: "Horizon, 'Arial Black', Arial, sans-serif" }}
@@ -352,7 +511,10 @@ export default function ModelPage() {
             </div>
 
             <div className="border-r border-gray-800 pr-8">
-              <p className="text-sm text-gray-400 mb-2 uppercase tracking-wide">0-100 km/h</p>
+              <p className="text-sm text-gray-400 mb-2 uppercase tracking-wide flex items-center justify-center gap-1">
+                <span style={{ fontFamily: "Horizon, sans-serif,arial" }}>0 -100</span>
+                <span>KM/H</span>
+              </p>
               <p
                 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
                 style={{ fontFamily: "Horizon, 'Arial Black', Arial, sans-serif" }}
@@ -371,41 +533,18 @@ export default function ModelPage() {
               </p>
             </div>
 
-            <div className="flex items-center justify-center">
-              <Button variant="ghost" size="lg" className="text-white hover:text-cyan-400 transition-colors p-4">
-                <Plus className="h-8 w-8" />
-              </Button>
+            <div className="border-r border-gray-800 pr-8">
+              <p className="text-sm text-gray-400 mb-2 uppercase tracking-wide">Engine Type</p>
+              <p
+                className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+                style={{ fontFamily: "Horizon, 'Arial Black', Arial, sans-serif" }}
+              >
+                {currentModel.specs.engineType}
+              </p>
             </div>
           </div>
         </div>
       </section>
-
-
-
-      {/* Footer */}
-      <footer className="bg-black border-t border-gray-800 py-16 px-6 lg:px-12">
-        <div className="max-w-7xl mx-auto text-center">
-          <div
-            className="text-4xl font-bold tracking-[0.2em] mb-6"
-            style={{
-              fontFamily: 'Futura, "Futura Bold", Arial, sans-serif',
-              letterSpacing: "0.2em",
-            }}
-          >
-            BUGATTI
-          </div>
-          <p className="text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            Experience the extraordinary. Configure your {currentModel.name} and discover what it means to own a piece
-            of automotive history.
-          </p>
-
-          <div className="mt-8">
-            <Button className="bg-gradient-to-r from-cyan-400 to-blue-500 text-black hover:from-cyan-300 hover:to-blue-400 px-12 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
-              Configure Your {currentModel.name}
-            </Button>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
