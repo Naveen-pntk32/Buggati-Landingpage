@@ -1,9 +1,65 @@
+@font-face {
+    font-family: "XBOX Helvetica";
+    src: url("https://db.onlinewebfonts.com/t/f1cdb0d38ca874854134382468e53a83.eot");
+    src: url("https://db.onlinewebfonts.com/t/f1cdb0d38ca874854134382468e53a83.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/f1cdb0d38ca874854134382468e53a83.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/f1cdb0d38ca874854134382468e53a83.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/f1cdb0d38ca874854134382468e53a83.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/f1cdb0d38ca874854134382468e53a83.svg#XBOX Helvetica")format("svg");
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
+  font-family: "XBOX Helvetica", Arial, Helvetica, sans-serif;
+  text-transform: lowercase;
+}
+
+/* Default letter spacing for larger screens */
+@media (min-width: 1024px) {
+  body {
+    letter-spacing: 0.05em;
+  }
+}
+
+/* Reduced letter spacing for medium screens */
+@media (max-width: 1023px) {
+  body {
+    letter-spacing: 0.05em;
+  }
+}
+
+/* Minimal letter spacing for small screens */
+@media (max-width: 768px) {
+  body {
+    letter-spacing: 0.05em;
+  }
+}
+
+/* Container class to prevent text overflow */
+.text-container {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hero-section {
   font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* Reset letter spacing for grid items and images */
+.grid {
+  letter-spacing: normal;
+}
+
+/* Reset letter spacing for footer links */
+footer a, 
+footer p {
+  letter-spacing: normal;
 }
 
 @layer utilities {

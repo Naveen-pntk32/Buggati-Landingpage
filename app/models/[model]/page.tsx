@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Menu, ArrowLeft, Plus } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useParams } from "next/navigation"
 
 export default function ModelPage() {
@@ -10,14 +10,17 @@ export default function ModelPage() {
   const modelName = params.model as string
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [titleOpacity, setTitleOpacity] = useState(1)
+  const [isImageVisible, setIsImageVisible] = useState(false)
+  const [videoLoaded, setVideoLoaded] = useState(false)
+  const performanceRef = useRef<HTMLDivElement>(null)
 
   // Model data with multiple images and specifications
   const modelData: Record<string, any> = {
     chiron: {
       name: "CHIRON",
-      wordmark: "/images/chiron-wordmark.png",
+      wordmark: "/png/chiron-wordmark.png",
       fullName: "BUGATTI CHIRON SPORT",
-      images: ["/images/bugatti-chiron.jpg", "/images/bugatti-hero.jpg", "/images/bugatti-tourbillon.jpg"],
+      images: ["/img/bugatti-chiron.jpg", "/img/bugatti-hero.jpg", "/img/bugatti-tourbillon.jpg"],
       specs: {
         maxSpeed: "420 km/h",
         acceleration: "2.4 s",
@@ -29,21 +32,21 @@ export default function ModelPage() {
           title: "One-Piece Taillight",
           description:
             "Created as one single unbroken piece, the striking taillight is the embodiment of 'Form Follows Performance', allowing light to be emitted and form beneath it, a seamless blending of style and innovation.",
-          images: ["/images/bugatti-chiron.jpg", "/images/bugatti-hero.jpg"],
+          images: ["/img/bugatti-chiron.jpg", "/img/bugatti-hero.jpg"],
         },
         {
           title: "Beauty Underneath",
           description:
             "Nothing is too beautiful. The pursuit of beauty begins beneath the design of Tourbillon's chassis — a stunning work of art, hidden from view, that's not only exquisitely formed but enormously strong.",
-          images: ["/images/bugatti-tourbillon.jpg", "/images/bugatti-divo.jpg"],
+          images: ["/img/bugatti-tourbillon.jpg", "/img/bugatti-divo.jpg"],
         },
       ],
     },
     mistral: {
       name: "MISTRAL",
-      wordmark: "/images/mistral-wordmark.png",
+      wordmark: "/png/mistral-wordmark.png",
       fullName: "BUGATTI W16 MISTRAL",
-      images: ["/images/bugatti-mistral.jpg", "/images/bugatti-chiron.jpg", "/images/bugatti-divo.jpg"],
+      images: ["/img/bugatti-mistral.jpg", "/img/bugatti-chiron.jpg", "/img/bugatti-divo.jpg"],
       specs: {
         maxSpeed: "420 km/h",
         acceleration: "2.4 s",
@@ -55,21 +58,21 @@ export default function ModelPage() {
           title: "Iconic Silhouette",
           description:
             "The W16 Mistral redefines open-top motoring with its distinctive silhouette and uncompromising performance, a fitting tribute to Bugatti's legendary W16 engine.",
-          images: ["/images/bugatti-mistral.jpg", "/images/bugatti-chiron.jpg"],
+          images: ["/img/bugatti-mistral.jpg", "/img/bugatti-chiron.jpg"],
         },
         {
           title: "Engineering Excellence",
           description:
             "Every detail of the W16 Mistral has been meticulously crafted to deliver the ultimate driving experience, combining breathtaking speed with unparalleled luxury.",
-          images: ["/images/bugatti-divo.jpg", "/images/bugatti-hero.jpg"],
+          images: ["/img/bugatti-divo.jpg", "/img/bugatti-hero.jpg"],
         },
       ],
     },
     divo: {
       name: "DIVO",
-      wordmark: "/images/divo-wordmark.png",
+      wordmark: "/png/divo-wordmark.png",
       fullName: "BUGATTI DIVO",
-      images: ["/images/bugatti-divo.jpg", "/images/bugatti-tourbillon.jpg", "/images/bugatti-mistral.jpg"],
+      images: ["/img/bugatti-divo.jpg", "/img/bugatti-tourbillon.jpg", "/img/bugatti-mistral.jpg"],
       specs: {
         maxSpeed: "380 km/h",
         acceleration: "2.4 s",
@@ -81,21 +84,21 @@ export default function ModelPage() {
           title: "Agile Masterpiece",
           description:
             "The Divo represents a new chapter in Bugatti's history, focusing on extreme agility and corner dynamics while maintaining the brand's signature luxury and exclusivity.",
-          images: ["/images/bugatti-divo.jpg", "/images/bugatti-tourbillon.jpg"],
+          images: ["/img/bugatti-divo.jpg", "/img/bugatti-tourbillon.jpg"],
         },
         {
           title: "Aerodynamic Perfection",
           description:
             "Every curve and surface of the Divo has been engineered to optimize airflow and downforce, resulting in a 90kg increase in downforce compared to the Chiron.",
-          images: ["/images/bugatti-mistral.jpg", "/images/bugatti-hero.jpg"],
+          images: ["/img/bugatti-mistral.jpg", "/img/bugatti-hero.jpg"],
         },
       ],
     },
     tourbillon: {
       name: "TOURBILLON",
-      wordmark: "/images/tourbillon-wordmark.png",
+      wordmark: "/png/tourbillon-wordmark.png",
       fullName: "BUGATTI TOURBILLON",
-      images: ["/images/bugatti-tourbillon.jpg", "/images/bugatti-divo.jpg", "/images/bugatti-chiron.jpg"],
+      images: ["/img/bugatti-tourbillon.jpg", "/img/bugatti-divo.jpg", "/img/bugatti-chiron.jpg"],
       specs: {
         maxSpeed: "445 km/h",
         acceleration: "2.0 s",
@@ -107,13 +110,13 @@ export default function ModelPage() {
           title: "Revolutionary Design",
           description:
             "The Tourbillon represents Bugatti's vision for the future, combining cutting-edge technology with timeless elegance in a package that pushes the boundaries of automotive design.",
-          images: ["/images/bugatti-tourbillon.jpg", "/images/bugatti-divo.jpg"],
+          images: ["/img/bugatti-tourbillon.jpg", "/img/bugatti-divo.jpg"],
         },
         {
           title: "Unmatched Performance",
           description:
             "With its groundbreaking powertrain and advanced aerodynamics, the Tourbillon delivers performance figures that redefine what's possible in a production hypercar.",
-          images: ["/images/bugatti-chiron.jpg", "/images/bugatti-hero.jpg"],
+          images: ["/img/bugatti-chiron.jpg", "/img/bugatti-hero.jpg"],
         },
       ],
     },
@@ -185,7 +188,7 @@ export default function ModelPage() {
       if (performanceSection) {
         const performanceTop = performanceSection.offsetTop
         const fadeDistance = 200 // Distance over which to fade
-        const distanceToPerformance = performanceTop - scrollPosition - 200 // Adjust for fixed title position
+        const distanceToPerformance = performanceTop - scrollPosition - 300 // Adjust for fixed title position
 
         if (distanceToPerformance <= fadeDistance) {
           const opacity = Math.max(0, distanceToPerformance / fadeDistance)
@@ -198,6 +201,25 @@ export default function ModelPage() {
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsImageVisible(true)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    if (performanceRef.current) {
+      observer.observe(performanceRef.current)
+    }
+
+    return () => observer.disconnect()
   }, [])
 
   const goBack = () => {
@@ -244,7 +266,7 @@ export default function ModelPage() {
         <img
           src={currentModel.wordmark || "/placeholder.svg"}
           alt={currentModel.name}
-          className="h-16 md:h-24 lg:h-32 mx-auto filter invert"
+          className="h-4 md:h-6 lg:h-10 w-auto mx-auto filter invert"
           style={{
             textShadow: "0 4px 8px rgba(0,0,0,0.5)",
             filter: "invert(1) drop-shadow(0 4px 8px rgba(0,0,0,0.5))",
@@ -252,180 +274,77 @@ export default function ModelPage() {
         />
       </div>
 
-      {/* Hero Sections with Background Scrolling - Keep existing functionality but make transparent */}
+      {/* Hero Sections with Background Scrolling */}
       <div className="relative">
         {currentModel.images.map((image: string, index: number) => (
           <section
             key={index}
             className="h-screen relative overflow-hidden"
-            style={{
-              backgroundImage: `url('${image}')`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundAttachment: "fixed",
-            }}
           >
-            <div className="absolute inset-0 bg-black/20" />
+            {index === 0 ? (
+              // Video Background for first section
+              <div className="absolute inset-0">
+                <video
+                  className="w-full h-full object-cover"
+                  muted
+                  loop
+                  playsInline
+                  autoPlay
+                >
+                  <source src="/videos/bugatti-demo.webm" type="video/webm" />
+                </video>
+                <div className="absolute inset-0 bg-black/20" />
+              </div>
+            ) : (
+              // Image Background for other sections
+              <div
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{
+                  backgroundImage: `url('${image}')`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundAttachment: "fixed",
+                }}
+              >
+                <div className="absolute inset-0 bg-black/20" />
+              </div>
+            )}
           </section>
         ))}
-
-        {/* Overlay Content - First Section (Two Images with Content Box) */}
-        <section className="min-h-screen bg-transparent absolute top-[100vh] left-0 right-0 z-20 py-16 px-6 lg:px-12">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 min-h-[80vh] items-center">
-            {/* Left Video Container */}
-            <div className="h-96 lg:h-[500px] relative group">
-              <video
-                className="w-full h-full object-cover rounded-lg shadow-2xl"
-                muted
-                loop
-                playsInline
-                onMouseEnter={(e) => e.currentTarget.play()}
-                onMouseLeave={(e) => e.currentTarget.pause()}
-              >
-                <source src="/videos/bugatti-demo.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-
-              {/* Video Overlay Indicator */}
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100">
-                <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
-                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Image with Content Box */}
-            <div className="relative h-96 lg:h-[500px]">
-              <img
-                src={currentModel.images[1] || "/placeholder.svg"}
-                alt={currentModel.name}
-                className="w-full h-full object-cover rounded-lg shadow-2xl"
-              />
-
-              {/* Small Content Box positioned in bottom right */}
-              <div className="absolute bottom-8 right-8 p-6 w-48 h-32">
-                <h4
-                  className="text-sm font-bold mb-2 text-white"
-                  style={{ fontFamily: 'Futura, "Futura Bold", Arial, sans-serif' }}
-                >
-                  CONTENT
-                </h4>
-                <p className="text-gray-300 text-xs leading-relaxed">Design excellence meets performance</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Overlay Content - Second Section (Content Left + Image Center + Stacked Images Right) */}
-        <section className="min-h-screen bg-transparent absolute top-[200vh] left-0 right-0 z-20 py-16 px-6 lg:px-12">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 items-start min-h-[80vh]">
-            {/* Content Area - Left Side */}
-            <div className="lg:col-span-1">
-              <h3
-                className="text-xl font-bold mb-4 text-white"
-                style={{ fontFamily: 'Futura, "Futura Bold", Arial, sans-serif' }}
-              >
-                CONTENT
-              </h3>
-              <p className="text-gray-300 leading-relaxed mb-6 text-sm">
-                Uncompromising power meets precision engineering. The {currentModel.name} delivers an extraordinary
-                driving experience that redefines what's possible.
-              </p>
-              <div className="space-y-3">
-                <div>
-                  <p className="text-2xl font-bold text-white">{currentModel.specs.horsepower}</p>
-                  <p className="text-gray-400 text-xs">HORSEPOWER</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-white">{currentModel.specs.maxSpeed}</p>
-                  <p className="text-gray-400 text-xs">MAX SPEED</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Main Image - Center */}
-            <div className="lg:col-span-2 h-96 lg:h-[500px]">
-              <img
-                src={currentModel.images[2] || "/placeholder.svg"}
-                alt={currentModel.name}
-                className="w-full h-full object-cover rounded-lg shadow-xl"
-              />
-            </div>
-
-            {/* Stacked Images - Right Side */}
-            <div className="lg:col-span-1 space-y-4">
-              <div className="h-44 lg:h-60">
-                <img
-                  src={currentModel.images[0] || "/placeholder.svg"}
-                  alt={currentModel.name}
-                  className="w-full h-full object-cover rounded-lg shadow-lg"
-                />
-              </div>
-              <div className="h-44 lg:h-60">
-                <img
-                  src={currentModel.images[1] || "/placeholder.svg"}
-                  alt={currentModel.name}
-                  className="w-full h-full object-cover rounded-lg shadow-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
 
-      {/* Feature Sections - Dark Premium Style */}
-      {currentModel.features.map((feature: any, index: number) => (
-        <section key={index} className="min-h-screen bg-black py-16 px-6 lg:px-12 relative z-20">
-          <div className="max-w-7xl mx-auto">
-            {/* Feature Header */}
-            <div className="mb-16 lg:mb-24">
-              <h2
-                className="text-4xl lg:text-5xl font-bold mb-6"
-                style={{ fontFamily: "Horizon, 'Arial Black', Arial, sans-serif" }}
-              >
-                {feature.title}
-              </h2>
-              <p className="text-gray-400 max-w-2xl leading-relaxed">{feature.description}</p>
-            </div>
-
-            {/* Feature Images - Alternating Layout */}
-            <div className={`grid grid-cols-1 lg:grid-cols-3 gap-8 ${index % 2 === 0 ? "" : "lg:grid-flow-dense"}`}>
-              {/* Main Image */}
-              <div className={`lg:col-span-2 ${index % 2 === 0 ? "" : "lg:col-start-2"}`}>
-                <div className="aspect-[16/9] overflow-hidden">
-                  <img
-                    src={feature.images[0] || "/placeholder.svg"}
-                    alt={feature.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-
-              {/* Secondary Image */}
-              <div className={`${index % 2 === 0 ? "" : "lg:col-start-1 lg:row-start-1"}`}>
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={feature.images[1] || "/placeholder.svg"}
-                    alt={`${feature.title} detail`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
+      {/* Performance Section (Horizontal) */}
+      <section 
+        id="performance-section" 
+        className="bg-gradient-to-b from-black via-gray-900 to-black py-16 px-6 lg:px-12 border-t border-gray-800"
+        ref={performanceRef}
+      >
+        <div className="max-w-7xl mx-auto">
+          {/* Side View Image Container */}
+          <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] mb-16 overflow-hidden">
+            <div 
+              className={`absolute inset-0 flex items-center justify-center transform transition-all duration-1000 ease-out
+                ${isImageVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
+            >
+              <img
+                src="/sideview-img/sideview-bolide.png"
+                alt={`${currentModel.name} Side View`}
+                className="w-full h-full object-contain"
+                style={{
+                  filter: "drop-shadow(0 0 20px rgba(0,0,0,0.5))",
+                }}
+              />
             </div>
           </div>
-        </section>
-      ))}
 
-      {/* Performance Section (Horizontal) */}
-      <section id="performance-section" className="bg-black py-16 px-6 lg:px-12 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {/* Performance Stats */}
+          <div className={`grid grid-cols-2 md:grid-cols-4 gap-8 text-center transform transition-all duration-1000 delay-500 ease-out
+            ${isImageVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
+          >
             <div className="border-r border-gray-800 pr-8">
               <p className="text-sm text-gray-400 mb-2 uppercase tracking-wide">Max Speed</p>
               <p
-                className="text-3xl md:text-4xl font-bold"
+                className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
                 style={{ fontFamily: "Horizon, 'Arial Black', Arial, sans-serif" }}
               >
                 {currentModel.specs.maxSpeed}
@@ -435,7 +354,7 @@ export default function ModelPage() {
             <div className="border-r border-gray-800 pr-8">
               <p className="text-sm text-gray-400 mb-2 uppercase tracking-wide">0-100 km/h</p>
               <p
-                className="text-3xl md:text-4xl font-bold"
+                className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
                 style={{ fontFamily: "Horizon, 'Arial Black', Arial, sans-serif" }}
               >
                 {currentModel.specs.acceleration}
@@ -445,7 +364,7 @@ export default function ModelPage() {
             <div className="border-r border-gray-800 pr-8">
               <p className="text-sm text-gray-400 mb-2 uppercase tracking-wide">Horsepower</p>
               <p
-                className="text-3xl md:text-4xl font-bold"
+                className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
                 style={{ fontFamily: "Horizon, 'Arial Black', Arial, sans-serif" }}
               >
                 {currentModel.specs.horsepower}
@@ -460,6 +379,8 @@ export default function ModelPage() {
           </div>
         </div>
       </section>
+
+
 
       {/* Footer */}
       <footer className="bg-black border-t border-gray-800 py-16 px-6 lg:px-12">

@@ -2,8 +2,12 @@
 
 import { Button } from "@/components/ui/button"
 import { Menu } from "lucide-react"
+import { useState } from "react"
 
 export default function HomePage() {
+  const [videoError, setVideoError] = useState(false)
+  const [videoLoaded, setVideoLoaded] = useState(false)
+
   const scrollToModels = () => {
     const modelsSection = document.getElementById("models-section")
     modelsSection?.scrollIntoView({ behavior: "smooth" })
@@ -15,10 +19,10 @@ export default function HomePage() {
   }
 
   const models = [
-    { name: "Chiron", image: "/images/bugatti-chiron.jpg", description: "The Ultimate Hypercar" },
-    { name: "Mistral", image: "/images/bugatti-mistral.jpg", description: "Open-Top Excellence" },
-    { name: "Divo", image: "/images/bugatti-divo.jpg", description: "Agile & Lightweight" },
-    { name: "Tourbillon", image: "/images/bugatti-tourbillon.jpg", description: "Engineering Masterpiece" },
+    { name: "Chiron", image: "/img/bugatti-chiron.jpg", description: "The Ultimate Hypercar" },
+    { name: "Mistral", image: "/img/bugatti-mistral.jpg", description: "Open-Top Excellence" },
+    { name: "Divo", image: "/img/bugatti-divo.jpg", description: "Agile & Lightweight" },
+    { name: "Tourbillon", image: "/img/bugatti-tourbillon.jpg", description: "Engineering Masterpiece" },
     { name: "Centodieci", image: "/images/bugatti-chiron.jpg", description: "Limited Edition" },
     { name: "Bolide", image: "/images/bugatti-mistral.jpg", description: "Track-Focused Beast" },
   ]
@@ -46,16 +50,19 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="min-h-screen bg-black text-white relative overflow-hidden">
-        {/* Background Image */}
+      <section className="hero-section min-h-screen bg-black text-white relative overflow-hidden">
+        {/* First Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('/images/bugatti-hero-new.jpg')",
+            backgroundImage: "url('/img/bugatti-hero.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-black/20" />
         </div>
+
+        
+        
 
         {/* Main Content */}
         <main className="relative z-10 flex flex-col items-start justify-end pb-8 mt-auto min-h-screen text-left px-6 absolute top-0 left-0 mb-10">
@@ -100,10 +107,7 @@ export default function HomePage() {
       {/* Models Section */}
       <section id="models-section" className="py-20 px-6 lg:px-12 bg-gradient-to-b from-black to-gray-900">
         <div className="max-w-7xl mx-auto">
-          <h2
-            className="text-5xl md:text-7xl font-bold text-center mb-16 tracking-tight"
-            style={{ fontFamily: "Horizon, 'Arial Black', Arial, sans-serif" }}
-          >
+          <h2 className="text-2xl md:text-3xl  text-center mb-16 tracking-[0.5em]">
             OUR MODELS
           </h2>
 
@@ -112,7 +116,7 @@ export default function HomePage() {
               <div
                 key={model.name}
                 onClick={() => navigateToModel(model.name)}
-                className="relative overflow-hidden rounded-lg bg-gray-800 cursor-pointer"
+                className="relative overflow-hidden bg-gray-800 cursor-pointer"
               >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
@@ -122,10 +126,9 @@ export default function HomePage() {
                   />
                 </div>
 
-                {/* Centered PNG wordmark */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <img
-                    src={`/images/${model.name.toLowerCase()}-wordmark.png`}
+                    src={`/png/${model.name.toLowerCase()}-wordmark.png`}
                     alt={model.name}
                     className="h-8 md:h-10 filter invert"
                     style={{
@@ -138,96 +141,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-black border-t border-gray-800 py-16 px-6 lg:px-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="col-span-1 md:col-span-2">
-              <div
-                className="text-4xl font-bold tracking-[0.2em] mb-6"
-                style={{
-                  fontFamily: 'Futura, "Futura Bold", Arial, sans-serif',
-                  letterSpacing: "0.2em",
-                }}
-              >
-                BUGATTI
-              </div>
-              <p className="text-gray-400 max-w-md leading-relaxed">
-                Crafting the world's most exclusive hypercars since 1909. Every Bugatti represents the pinnacle of
-                automotive engineering and luxury.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Models</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-cyan-400 transition-colors">
-                    Chiron
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-cyan-400 transition-colors">
-                    Bolide
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-cyan-400 transition-colors">
-                    Mistral
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-cyan-400 transition-colors">
-                    Heritage
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-cyan-400 transition-colors">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-cyan-400 transition-colors">
-                    News
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-cyan-400 transition-colors">
-                    Careers
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-cyan-400 transition-colors">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-500 text-sm">© 2024 Bugatti. All rights reserved.</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-500 hover:text-cyan-400 transition-colors">
-                Privacy
-              </a>
-              <a href="#" className="text-gray-500 hover:text-cyan-400 transition-colors">
-                Terms
-              </a>
-              <a href="#" className="text-gray-500 hover:text-cyan-400 transition-colors">
-                Legal
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
