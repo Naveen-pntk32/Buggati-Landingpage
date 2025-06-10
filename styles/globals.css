@@ -67,6 +67,52 @@ footer p {
     text-wrap: balance;
   }
 }
+@media (max-width: 768px) {
+  .your-class {
+    width: 100%; /* Full width on smaller screens */
+  }
+}
+
+
+/* Side view image container styling */
+.side-view-container {
+  position: relative;
+  width: 100%;
+  padding-top: 40%; /* Wider aspect ratio for car side views */
+  overflow: hidden;
+  margin-bottom: 4rem;
+}
+
+.side-view-container .image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-view-container img {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  transform: scale(1.05);
+  transition: transform 0.3s ease-out;
+}
+
+/* Adjust side view container for mobile */
+@media (max-width: 768px) {
+  .side-view-container {
+    padding-top: 60%; /* Taller aspect ratio for mobile */
+  }
+  
+  .side-view-container img {
+    transform: scale(1);
+  }
+}
 
 @layer base {
   :root {

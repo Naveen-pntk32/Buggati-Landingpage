@@ -25,7 +25,7 @@ export default function ModelPage() {
       wordmark: "/png/chiron-wordmark.png",
       fullName: "BUGATTI CHIRON SPORT",
       images: [
-        "https://res.cloudinary.com/dhxlh70zi/video/upload/v1749488345/chiron-video_r0hccx.mp4", // First section video from Cloudinary
+        "https://res.cloudinary.com/dhxlh70zi/video/upload/v1749488345/chiron-video_r0hccx.mp4",
         "/img/chiron/chiron-bg1.jpg",
         "/img/chiron/chiron-bg2.jpg"
       ],
@@ -36,6 +36,7 @@ export default function ModelPage() {
         torque: "1600 Nm",
         engineType: "W16"
       },
+      sideViewImage: "/sideview-img/chiron.png",
       features: [
         {
           title: "One-Piece Taillight",
@@ -67,6 +68,7 @@ export default function ModelPage() {
         torque: "1600 Nm",
         engineType: "W16"
       },
+      sideViewImage: "/sideview-img/mistral.png",
       features: [
         {
           title: "Iconic Silhouette",
@@ -94,10 +96,11 @@ export default function ModelPage() {
       specs: {
         maxSpeed: "380 km/h",
         acceleration: "2.4s",
-        horsepower: "1479 HP",
+        horsepower: "1500 HP",
         torque: "1600 Nm",
         engineType: "W16"
       },
+      sideViewImage: "/sideview-img/divo.png",
       features: [
         {
           title: "Agile Masterpiece",
@@ -123,12 +126,13 @@ export default function ModelPage() {
         "/img/tourbillion/Tourbillon-bg2.jpg"
       ],
       specs: {
-        maxSpeed: "445 km/h",
-        acceleration: "2.0s",
-        horsepower: "1775 HP",
-        torque: "1800 Nm",
+        maxSpeed: "440 km/h",
+        acceleration: "2.3s",
+        horsepower: "1600 HP",
+        torque: "1700 Nm",
         engineType: "W16"
       },
+      sideViewImage: "/sideview-img/tourbillion.png",
       features: [
         {
           title: "Revolutionary Design",
@@ -156,10 +160,11 @@ export default function ModelPage() {
       specs: {
         maxSpeed: "380 km/h",
         acceleration: "2.4s",
-        horsepower: "1577 HP",
+        horsepower: "1600 HP",
         torque: "1600 Nm",
         engineType: "W16"
       },
+      sideViewImage: "/sideview-img/centodecie.png",
       features: [
         {
           title: "Limited Edition Excellence",
@@ -191,6 +196,7 @@ export default function ModelPage() {
         torque: "1850 Nm",
         engineType: "W16"
       },
+      sideViewImage: "/sideview-img/sideview-bolide.png",
       features: [
         {
           title: "Track-Focused Beast",
@@ -463,9 +469,9 @@ export default function ModelPage() {
       >
         <div className="max-w-7xl mx-auto">
           {/* Side View Image Container */}
-          <div className="relative w-full h-[250px] md:h-[350px] lg:h-[450px] mb-16">
+          <div className="side-view-container">
             <div 
-              className={`h-full flex items-center justify-center transform transition-all duration-1000 ease-out
+              className={`image-wrapper transform transition-all duration-1000 ease-out
                   ${isImageVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
             >
               <AnimatedContent
@@ -482,14 +488,15 @@ export default function ModelPage() {
                   blur="8px"
                 >
                   <Image
-                    src="/sideview-img/sideview-bolide.png"
+                    src={currentModel.sideViewImage}
                     alt={`${currentModel.name} Side View`}
-                    width={400}
-                    height={200}
-                    className="w-full h-full object-contain transform scale-105"
+                    width={1200}
+                    height={600}
+                    className="select-none"
                     style={{
                       filter: "drop-shadow(0 0 20px rgba(0,0,0,0.5))",
                     }}
+                    priority
                   />
                 </BlurFade>
               </AnimatedContent>
