@@ -324,7 +324,7 @@ export default function ModelPage() {
             {index === 0 ? (
               // Video Background for first section
               <div className="absolute inset-0">
-  <FadeContent duration={1500} threshold={0.1}>
+  <FadeContent duration={3000} threshold={0.1}>
     <video
       className="w-full h-full object-cover scale-[1.4] origin-center"
       muted
@@ -477,13 +477,13 @@ export default function ModelPage() {
               <AnimatedContent
                 direction="vertical"
                 distance={100}
-                duration={1}
+                duration={3}
                 ease="power3.out"
                 delay={0.2}
               >
                 <BlurFade
                   direction="up"
-                  duration={0.8}
+                  duration={1.5}
                   delay={0.3}
                   blur="8px"
                 >
